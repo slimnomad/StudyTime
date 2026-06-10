@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Tasks</h1>
+        <a href="{{ url_for('task_create') }}" class="btn btn-primary">New Task</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if tasks %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Difficulty</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description|truncate(100) }}</td>
+                <td>{{ task.difficulty }}</td>
+                <td>
+                    {% if task.completed %}
+                        <span class="badge bg-success">Completed</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Pending</span>
+                    {% endif %}
+                </td>
+                <td>{{ task.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <a href="{{ url_for('task_update', id=task.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <form action="{{ url_for('task_delete', id=task.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this task?');">Delete</button>
+                    </form>
+                    <form action="{{ url_for('task_toggle', id=task.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-outline-{% if task.completed %}secondary{% else %}success{% endif %}">
+                            {% if task.completed %}Undo{% else %}Complete{% endif %}
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">
+        No tasks yet. <a href="{{ url_for('task_create') }}" class="alert-link">Create your first task!</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

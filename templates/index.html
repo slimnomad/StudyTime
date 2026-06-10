@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h1 class="display-4">Study Time</h1>
+<div class="container text-center">
+    <h1 class="display-4">Welcome to Study Time</h1>
     <p class="lead">Your AI-powered study planner</p>
+    <a href="{{ url_for('task_list') }}" class="btn btn-primary btn-lg">Manage Your Tasks</a>
 </div>
 {% endblock %}

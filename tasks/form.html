@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    {% if task %}
+                        Edit Task
+                    {% else %}
+                        New Task
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ task.title if task else '' }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ task.description if task else '' }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="difficulty" class="form-label">Difficulty (1-5)</label>
+                            <input type="number" class="form-control" id="difficulty" name="difficulty" min="1" max="5" value="{{ task.difficulty if task else 1 }}" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                {% if task %}Update Task{% else %}Create Task{% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
