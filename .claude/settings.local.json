@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(mkdir -p templates static/css)",
-      "Bash(touch app.py requirements.txt)",
-      "Bash(git add *)"
-    ]
-  }
-}
