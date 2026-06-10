@@ -17,7 +17,7 @@ I was juggling multiple courses and kept missing deadlines or cramming last minu
 - Backend: Flask (Python 3.9+)
 - Database: SQLite (for simplicity, easy to switch to PostgreSQL later)
 - ORM: SQLAlchemy
-- AI: OpenAI's GPT-3.5-turbo (or Groq if you prefer)
+- AI: Groq's Llama3-70b-8192 (lightning fast inference)
 - Frontend: Basic HTML/CSS with a touch of Bootstrap for responsiveness
 - Nothing fancy - tried to keep it clean and understandable
 
@@ -27,9 +27,8 @@ I was juggling multiple courses and kept missing deadlines or cramming last minu
 3. Activate it: `source venv/bin/activate` (or `venv\Scripts\activate` on Windows)
 4. Install requirements: `pip install -r requirements.txt`
 5. Set up your API key:
-   - Get an OpenAI key from platform.openai.com
-   - Create a `.env` file with: `OPENAI_API_KEY=your_key_here`
-   - (Or use Groq - check ai_service.py for details)
+   - Get a Groq key from console.groq.com (free tier available)
+   - Create a `.env` file with: `GROQ_API_KEY=your_key_here`
 6. Initialize the database: `flask init-db`
 7. Run the app: `flask run`
 8. Visit http://localhost:5000
@@ -48,6 +47,7 @@ It's not perfect - sometimes the suggestions need tweaking - but it's helped me 
 - Code isn't production-perfect but it works for personal use
 - Feel free to fork and adapt it for your own workflow
 - If you find bugs or have suggestions, issues are welcome!
+- The Groq API is incredibly fast - responses come back in milliseconds, making the study plan generation feel instantaneous
 
 ---
 Built with ☕ during late-night study sessions
