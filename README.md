@@ -29,6 +29,7 @@ I was juggling multiple courses and kept missing deadlines or cramming last minu
 5. Set up your API key:
    - Get a Groq key from console.groq.com (free tier available)
    - Create a `.env` file with: `GROQ_API_KEY=your_key_here`
+   - The application uses python-dotenv to load environment variables from the .env file
 6. Initialize the database: `flask init-db`
 7. Run the app: `flask run`
 8. Visit http://localhost:5000
